@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {query} from "@angular/animations";
+import {HttpService} from "../../shared/services/http/http.service";
 
 @Component({
   selector: 'app-search-input',
@@ -10,8 +11,9 @@ import {query} from "@angular/animations";
 export class SearchInputComponent implements OnInit {
 
   searchFormGroup!: FormGroup;
+  isQuery = false;
 
-  constructor() { }
+  constructor(private http: HttpService) { }
 
   ngOnInit(): void {
     this.searchFormGroup = new FormGroup({
