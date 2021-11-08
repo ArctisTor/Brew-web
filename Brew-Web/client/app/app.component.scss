@@ -1,0 +1,23 @@
+.title-container {
+  background: black;
+  color: #ffffff;
+  min-height: 5em;
+
+  .title-subheader {
+    display: block;
+
+    .title-header{
+      font-size: 2em;
+      padding: .5em;
+      width: 10em;
+    }
+
+    .title-version {
+      width: 10em;
+      text-align: center;
+    }
+  }
+}
+.search-container {
+
+}
