@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import { SearchInputComponent } from './search/search-input/search-input.compone
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import { BrewContainerComponent } from './search/container/brew-container/brew-container.component';
+import {HttpClientModule} from "@angular/common/http";
 
 const materialModules =[
   MatFormFieldModule,
@@ -25,13 +28,15 @@ const materialModules =[
     AppComponent,
     HomeComponent,
     ListComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    BrewContainerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     materialModules
   ],
   providers: [],

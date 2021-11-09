@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {query} from "@angular/animations";
 import {HttpService} from "../../shared/services/http/http.service";
+import {debounceTime} from "rxjs";
 
 @Component({
   selector: 'app-search-input',
@@ -24,7 +25,11 @@ export class SearchInputComponent implements OnInit {
   }
 
   onQuery(): void{
-    this.searchFormGroup.get('query')?.valueChanges.subscribe(val=> {
+    this.searchFormGroup.get('query')?.valueChanges
+      .pipe(
+        debounceTime(500)
+      )
+      .subscribe(val=> {
       if (!this.searchFormGroup.get('query')?.invalid){
         console.log(val);
       }
