@@ -1,3 +1,4 @@
 <div class="search-container">
-  <app-search-input></app-search-input>
+  <app-search-input (search)="queryBreweries($event)" [disabled]="isQuery"></app-search-input>
+  <app-beer-list [breweryList]="breweryList"></app-beer-list>
 </div>

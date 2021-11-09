@@ -1,7 +1,5 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
-import {query} from "@angular/animations";
-import {HttpService} from "../../shared/services/http/http.service";
 import {debounceTime} from "rxjs";
 
 @Component({
@@ -12,8 +10,10 @@ import {debounceTime} from "rxjs";
 export class SearchInputComponent implements OnInit {
 
   searchFormGroup!: FormGroup;
+  @Input() disabled!: boolean;
+  @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private http: HttpService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.searchFormGroup = new FormGroup({
@@ -30,9 +30,9 @@ export class SearchInputComponent implements OnInit {
       )
       .subscribe(val=> {
         // @ts-ignore
-        this.searchFormGroup.get('query').disable();
       if (!this.searchFormGroup.get('query')?.invalid){
-        console.log(val);
+        // @ts-ignore
+        this.search.emit(this.searchFormGroup.get('query')?.value);
       }
     })
   }

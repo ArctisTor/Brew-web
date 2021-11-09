@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpService} from "../../../shared/services/http/http.service";
+import {Brewery} from "../../../shared/models/Brewery";
 
 @Component({
   selector: 'app-brew-container',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrewContainerComponent implements OnInit {
 
-  constructor() { }
+  isQuery = false;
+  breweryList: Brewery[] = [];
+
+  constructor(private http: HttpService) { }
 
   ngOnInit(): void {
   }
 
+  queryBreweries(queryString: string) {
+    this.isQuery = true;
+    console.log(queryString);
+  }
 }

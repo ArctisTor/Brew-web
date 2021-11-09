@@ -1,7 +1,7 @@
 <form class="beer-query" [formGroup]="searchFormGroup">
   <mat-form-field class="search-width">
-    <input matInput type="search" formControlName="query" name="query" placeholder="Search a brewery">
-    <mat-error *ngIf="searchFormGroup.hasError('required')">
+    <input matInput type="search" formControlName="query" name="query" placeholder="Search a brewery" [readonly]="disabled">
+    <mat-error *ngIf="searchFormGroup.hasError('invalid')">
       Search term is <strong>required</strong>
     </mat-error>
   </mat-form-field>
