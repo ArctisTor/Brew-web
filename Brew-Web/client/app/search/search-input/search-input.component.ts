@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {query} from "@angular/animations";
 import {HttpService} from "../../shared/services/http/http.service";
@@ -12,7 +12,6 @@ import {debounceTime} from "rxjs";
 export class SearchInputComponent implements OnInit {
 
   searchFormGroup!: FormGroup;
-  isQuery = false;
 
   constructor(private http: HttpService) { }
 
@@ -30,6 +29,8 @@ export class SearchInputComponent implements OnInit {
         debounceTime(500)
       )
       .subscribe(val=> {
+        // @ts-ignore
+        this.searchFormGroup.get('query').disable();
       if (!this.searchFormGroup.get('query')?.invalid){
         console.log(val);
       }
