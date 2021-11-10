@@ -16,6 +16,7 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import { BrewContainerComponent } from './search/container/brew-container/brew-container.component';
 import {HttpClientModule} from "@angular/common/http";
+import { BrewListComponent } from './search/brew-list/brew-list.component';
 
 const materialModules =[
   MatFormFieldModule,
@@ -29,7 +30,8 @@ const materialModules =[
     HomeComponent,
     ListComponent,
     SearchInputComponent,
-    BrewContainerComponent
+    BrewContainerComponent,
+    BrewListComponent
   ],
   imports: [
     BrowserModule,

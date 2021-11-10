@@ -18,7 +18,12 @@ export class BrewContainerComponent implements OnInit {
   }
 
   queryBreweries(queryString: string) {
-    this.isQuery = true;
-    console.log(queryString);
+    var request = {
+      query: queryString
+    };
+    this.http.queryBrewery(request).subscribe((result: any)=> {
+      this.breweryList = result.breweryList;
+      console.log(this.breweryList);
+    })
   }
 }

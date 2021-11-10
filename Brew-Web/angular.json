@@ -74,7 +74,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "proxyConfig": "client/assets/config/proxy_config.json",
+          "options": {
+            "browserTarget": "Brew-Web:build",
+            "proxyConfig": "client/assets/config/proxy_config.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "Brew-Web:build:production"
