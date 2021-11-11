@@ -1,1 +1,7 @@
-<p>beer-list works!</p>
+<div class="brewery-list">
+  <div class="brewery" *ngFor="let brewery of breweryList">
+    <div class="brewery-title">{{brewery.name}}</div>
+    <div class="brewery-city">{{brewery.city}}</div>
+  </div>
+</div>
+

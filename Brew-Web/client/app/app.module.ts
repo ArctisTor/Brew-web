@@ -17,11 +17,13 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { BrewContainerComponent } from './search/container/brew-container/brew-container.component';
 import {HttpClientModule} from "@angular/common/http";
 import { BrewListComponent } from './search/brew-list/brew-list.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 const materialModules =[
   MatFormFieldModule,
   MatInputModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  MatPaginatorModule
 ]
 
 @NgModule({
