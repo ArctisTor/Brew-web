@@ -9,7 +9,7 @@
   <ul class="pagination" *ngIf="paginatedBreweryList.length > 0">
     <li class="page-item" [ngClass]="{disabled: !hasPrevious}"><a class="page-link">Previous</a></li>
     <div *ngFor="let displayPage of this.brewList()">
-      <li class="page-item" (click)="changePage(displayPage+1)"><a class="page-link">{{displayPage+1}}</a></li>
+      <li class="page-item" [ngClass]="{active: (displayPage+1) ==currentPaginationNumber}" (click)="changePage(displayPage+1)"><a class="page-link">{{displayPage+1}}</a></li>
     </div>
     <li class="page-item" [ngClass]="{disabled: !hasNext}"><a class="page-link">Next</a></li>
   </ul>

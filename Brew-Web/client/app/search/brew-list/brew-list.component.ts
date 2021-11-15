@@ -90,31 +90,31 @@ export class BrewListComponent implements OnInit {
   brewList(): number[] {
     var index: any[] = [];
 
-    if (!this.paginatedResults.length) {
+    if (!this.paginatedBreweryList.length) {
       return index;
     }
 
-    if (this.currentPage <= this.lowerLimit) {
-      this.lowerLimit = Math.max(this.lowerLimit-this.maxSize,  0);
-      this.upperLimit = this.upperLimit-this.maxSize;
+    if (this.currentPaginationNumber <= this.pageLowerLimit) {
+      this.pageLowerLimit = Math.max(this.pageLowerLimit-this.breweryPerPage,  0);
+      this.pageUpperLimit = this.pageUpperLimit-this.breweryPerPage;
     }
 
-    if (this.currentPage > this.upperLimit) {
-      this.upperLimit = Math.min(this.upperLimit+this.maxSize, this.totalPages);
-      this.lowerLimit = this.lowerLimit+this.maxSize;
+    if (this.currentPaginationNumber > this.pageUpperLimit) {
+      this.pageUpperLimit = Math.min(this.pageUpperLimit+this.breweryPerPage, this.requiredPaginatedPages);
+      this.pageLowerLimit = this.pageLowerLimit+this.breweryPerPage;
     }
 
-    if (this.currentPage == this.totalPages) {
-      this.upperLimit = this.totalPages;
-      this.lowerLimit = this.totalPages-this.maxSize;
+    if (this.currentPaginationNumber == this.requiredPaginatedPages) {
+      this.pageUpperLimit = this.requiredPaginatedPages;
+      this.pageLowerLimit = this.requiredPaginatedPages-this.breweryPerPage;
     }
 
-    if (this.currentPage == 1) {
-      this.lowerLimit = 0;
-      this.upperLimit = Math.min(this.lowerLimit+this.maxSize, this.totalPages);
+    if (this.currentPaginationNumber == 1) {
+      this.pageLowerLimit = 0;
+      this.pageUpperLimit = Math.min(this.pageLowerLimit+this.breweryPerPage, this.requiredPaginatedPages);
     }
 
-    for (var i = this.lowerLimit; i < this.upperLimit; i++) {
+    for (var i = this.pageLowerLimit; i < this.pageUpperLimit; i++) {
       index.push(i);
     }
     return index;
