@@ -35,41 +35,47 @@ export class BrewListComponent implements OnInit {
     if (!breweryList || breweryList.length <= 0) {
       this.paginatedBreweryList = [];
     } else {
-      this.requiredPaginatedPages = Math.ceil(this.breweryList.length/this.breweryPerPage);
+      //calculate total pages
+      this.totalPages = Math.ceil(this.totalItems/this.maxSize);
 
-      //ensure current page isn't out of range
-     if (this.currentPaginationNumber < 1) {
-       this.currentPaginationNumber = 1
-     } else if (this.currentPaginationNumber > this.requiredPaginatedPages){
-       this.currentPaginationNumber = this.requiredPaginatedPages;
-     }
+      // ensure current page isn't out of range
+      if (this.currentPage < 1) {
+        this.currentPage = 1;
+      } else if (this.currentPage > this.totalPages) {
+        this.currentPage = this.totalPages;
+      }
 
-     //hasPrevious and hasNext logic
-      if (this.currentPaginationNumber <= 1){
-        if (this.currentPaginationNumber < this.requiredPaginatedPages){
+      //hasPrevious and hasNext logic
+      if (this.currentPage <= 1) {
+        if (this.currentPage < this.totalPages) {
           this.hasNext = true;
         } else {
           this.hasNext = false;
         }
         this.hasPrevious = false;
-      }else if (this.currentPaginationNumber == this.requiredPaginatedPages) {
+      } else if (this.currentPage === this.totalPages) {
         this.hasPrevious = true;
-        this.hasNext= false;
-      } else{
+        this.hasNext = false;
+      } else {
         this.hasNext = true;
         this.hasPrevious = true;
       }
 
-      var startIndex = (this.currentPaginationNumber-1)*this.breweryPerPage;
-      var endIndex = Math.min(startIndex+this.breweryPerPage-1, this.breweryList.length-1);
+      var startIndex = (this.currentPage -1)*this.maxSize;
+      var endIndex = Math.min(startIndex+this.maxSize-1,  this.totalItems - 1);
+
+      if (startIndex < 0) {
+        startIndex = 0;
+      }
 
       if (endIndex < 0) {
         endIndex = 0;
       }
 
       if (startIndex == endIndex) {
-        this.paginatedBreweryList = [];
-        this.paginatedBreweryList.push(this.breweryList[startIndex]);
+        if (searchResults.length) {
+          this.paginatedResults.push(searchResults[startIndex]);
+        }
       }else {
         this.paginatedBreweryList = [];
         for (let i = startIndex; i < endIndex+1; i++) {
@@ -79,8 +85,8 @@ export class BrewListComponent implements OnInit {
 
 
       this.pageLowerLimit = (endIndex > 0 ? startIndex+1 : 0);
-      this.pageUpperLimit = (endIndex > 0 ? endIndex+1: 0);
-      if (this.paginatedBreweryList.length == 1) {
+      this.pageUpperLimit = (endIndex > 0 ? endIndex+1 : 0);
+      if (this.paginatedResults.length == 1) {
         this.pageLowerLimit = 1;
         this.pageUpperLimit = 1;
       }
