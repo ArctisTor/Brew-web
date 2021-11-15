@@ -28,11 +28,9 @@
       text-align: center;
     }
   }
+}
 
-  .content-footer{
-    margin-left: 100px;
-    bottom: 0;
-  }
-
-
+.content-footer{
+  display: table;
+  margin: 1em auto;
 }
