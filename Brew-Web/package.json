@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config client/assets/config/proxy_config.json --ssl",
+    "start": "ng serve --proxy-config client/assets/config/proxy_config.json",
     "prebuild": "npm --no-git-tag-version version patch",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",

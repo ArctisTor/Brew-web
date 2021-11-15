@@ -3,8 +3,8 @@
   grid-template-columns: auto;
   grid-template-rows: auto;
   grid-template-areas:
-    "header header header header"
-    "footer footer footer footer";
+    "header header"
+    "footer footer";
 
   .brewery{
     min-width: 10em;
@@ -12,12 +12,27 @@
     margin: .5em 1em .5em;
     background: red;
     cursor: pointer;
+    border-top: 1.25em solid transparent;
+    border-left: 2.5em solid #555;
+    border-bottom: 1.25em  solid transparent;
 
     .brewery-title {
       font-weight: 700;
       font-size: 1.25em;
-      padding: .25em;
+      padding: .5em;
+      text-align: center;
+      border-bottom: .2em outset black;
+    }
+
+    .brewery-info{
       text-align: center;
     }
   }
+
+  .content-footer{
+    margin-left: 100px;
+    bottom: 0;
+  }
+
+
 }

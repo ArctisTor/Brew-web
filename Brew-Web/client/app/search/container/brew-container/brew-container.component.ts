@@ -23,7 +23,7 @@ export class BrewContainerComponent implements OnInit {
     };
     this.http.queryBrewery(request).subscribe((result: any)=> {
       this.breweryList = result.breweryList;
-      console.log(this.breweryList);
+      // console.log(this.breweryList);
     })
   }
 }

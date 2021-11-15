@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import {SharedModule} from "./shared/shared.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
-import { ListComponent } from './list/list.component';
 import { SearchInputComponent } from './search/search-input/search-input.component';
 
 
@@ -30,7 +29,6 @@ const materialModules =[
   declarations: [
     AppComponent,
     HomeComponent,
-    ListComponent,
     SearchInputComponent,
     BrewContainerComponent,
     BrewListComponent

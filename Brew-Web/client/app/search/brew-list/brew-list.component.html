@@ -1,7 +1,17 @@
 <div class="brewery-list">
-  <div class="brewery" *ngFor="let brewery of breweryList">
+  <div class="brewery" *ngFor="let brewery of paginatedBreweryList">
     <div class="brewery-title">{{brewery.name}}</div>
-    <div class="brewery-city">{{brewery.city}}</div>
+    <div class="brewery-info" style="padding: .25em;">{{brewery.street}}</div>
+    <div class="brewery-info">{{brewery.city}}, {{brewery.state}} {{brewery.postal_code}}</div>
   </div>
+</div>
+<div class="content-footer">
+  <ul class="pagination" *ngIf="paginatedBreweryList.length > 0">
+    <li class="page-item" [ngClass]="{disabled: !hasPrevious}"><a class="page-link">Previous</a></li>
+    <div *ngFor="let displayPage of this.brewList()">
+      <li class="page-item" (click)="changePage(displayPage+1)"><a class="page-link">{{displayPage+1}}</a></li>
+    </div>
+    <li class="page-item" [ngClass]="{disabled: !hasNext}"><a class="page-link">Next</a></li>
+  </ul>
 </div>
 
