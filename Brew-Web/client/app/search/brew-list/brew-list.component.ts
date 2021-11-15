@@ -88,33 +88,35 @@ export class BrewListComponent implements OnInit {
   }
 
   brewList(): number[] {
-    var index: number[] = [];
+    var index: any[] = [];
 
-    // if (!this.paginatedBreweryList.length) {return index;}
-    //
-    // if (this.currentPaginationNumber <= this.pageLowerLimit) {
-    //   this.pageLowerLimit = Math.max(this.pageLowerLimit-this.breweryPerPage, 0);
-    //   this.pageUpperLimit = this.pageUpperLimit-this.breweryPerPage;
-    // }
-    //
-    // if (this.currentPaginationNumber > this.pageUpperLimit) {
-    //   this.pageUpperLimit = Math.min(this.pageUpperLimit+this.breweryPerPage, this.requiredPaginatedPages);
-    //   this.pageLowerLimit = this.pageLowerLimit+this.breweryPerPage;
-    // }
-    //
-    // if (this.currentPaginationNumber == this.requiredPaginatedPages) {
-    //   this.pageUpperLimit = this.requiredPaginatedPages;
-    //   this.pageLowerLimit = this.requiredPaginatedPages-this.breweryPerPage;
-    // }
-    //
-    // if (this.currentPaginationNumber == 1) {
-    //   this.pageLowerLimit = 0;
-    //   this.pageUpperLimit = Math.min(this.pageLowerLimit+this.breweryPerPage, this.requiredPaginatedPages)
-    // }
-    //
-    for (let i = this.pageLowerLimit; i < this.pageUpperLimit; i++) {index.push(i);}
+    if (!this.paginatedResults.length) {
+      return index;
+    }
 
-    // console.log('lower ' + this.pageLowerLimit + ' INDEX: '+ index + ' upper ' + this.pageUpperLimit);
+    if (this.currentPage <= this.lowerLimit) {
+      this.lowerLimit = Math.max(this.lowerLimit-this.maxSize,  0);
+      this.upperLimit = this.upperLimit-this.maxSize;
+    }
+
+    if (this.currentPage > this.upperLimit) {
+      this.upperLimit = Math.min(this.upperLimit+this.maxSize, this.totalPages);
+      this.lowerLimit = this.lowerLimit+this.maxSize;
+    }
+
+    if (this.currentPage == this.totalPages) {
+      this.upperLimit = this.totalPages;
+      this.lowerLimit = this.totalPages-this.maxSize;
+    }
+
+    if (this.currentPage == 1) {
+      this.lowerLimit = 0;
+      this.upperLimit = Math.min(this.lowerLimit+this.maxSize, this.totalPages);
+    }
+
+    for (var i = this.lowerLimit; i < this.upperLimit; i++) {
+      index.push(i);
+    }
     return index;
   }
 
