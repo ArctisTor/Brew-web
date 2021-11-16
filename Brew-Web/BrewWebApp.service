@@ -1,0 +1,15 @@
+[Unit]
+Description=SDR Web Application service script
+Documentation=
+After=network.target
+
+[Service]
+Environment=NODE_PORT=8100
+Type=simple
+User=tpcs
+WorkingDirectory=/opt/sdr-web-app
+ExecStart=/home/tpcs/.nvm/versions/node/v12.17.0/bin/node /opt/brew-web/server/server.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
