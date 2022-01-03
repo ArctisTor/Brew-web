@@ -14,7 +14,7 @@ cd /opt/brew-web
 cd server
 #install the Node libraries for server directory
 npm install
-#move service file to /usr/lib/systemd/system
+#move services file to /usr/lib/systemd/system
 sudo cp ../BrewWebApp.service /usr/lib/systemd/system
 #remove unwanted port forwarding
 sudo iptables -t nat -D PREROUTING 1
@@ -23,9 +23,9 @@ sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8100
 #Give permission
 #chmod 755 -R /opt/brew-web
 sudo chown tpcs:tpcs /opt/brew-web/server/config/appconfig.json
-#enable the BrewWebApp service on start up
+#enable the BrewWebApp services on start up
 systemctl enable BrewWebApp
-#install the iptables-service to be able to save the port forwarding rule
+#install the iptables-services to be able to save the port forwarding rule
 sudo yum install iptables iptables-services
 #save the rules
 sudo service iptables save

@@ -1,5 +1,5 @@
 <div class="brewery-list">
-  <div class="brewery" *ngFor="let brewery of paginatedBreweryList">
+  <div class="brewery" *ngFor="let brewery of paginatedBreweryList" (click)="selectBrewery(brewery)">
     <div class="brewery-title">{{brewery.name}}</div>
     <div class="brewery-info" style="padding: .25em;">{{brewery.street}}</div>
     <div class="brewery-info">{{brewery.city}}, {{brewery.state}} {{brewery.postal_code}}</div>

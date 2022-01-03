@@ -1,11 +1,11 @@
 {
   "name": "brew-web",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config client/assets/config/proxy_config.json",
     "prebuild": "npm --no-git-tag-version version patch",
-    "build": "ng build",
+    "build": "ng build --production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -25,6 +25,7 @@
     "rxjs": "^7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "^0.11.4",
+    "ngx-toastr": "^14.2.1",
     "@types/google.maps": "^3.47.0",
     "@googlemaps/js-api-loader": "^1.12.11"
   },

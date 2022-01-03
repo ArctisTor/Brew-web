@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../../../shared/services/http/http.service";
 import {Brewery} from "../../../shared/models/Brewery";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-brew-container',
@@ -11,8 +12,12 @@ export class BrewContainerComponent implements OnInit {
 
   isQuery = false;
   breweryList: Brewery[] = [];
+  selectedBrewery!: Brewery;
 
-  constructor(private http: HttpService) { }
+  constructor(
+    private http: HttpService,
+    private toaster: ToastrService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -25,5 +30,9 @@ export class BrewContainerComponent implements OnInit {
       this.breweryList = result.breweryList;
       // console.log(this.breweryList);
     })
+  }
+
+  previewBrewery(previewBrewery: Brewery){
+    this.selectedBrewery = previewBrewery;
   }
 }

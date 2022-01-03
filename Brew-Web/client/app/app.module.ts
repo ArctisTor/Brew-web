@@ -8,17 +8,21 @@ import {HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {SharedModule} from "./shared/shared.module";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
+
+
 import { SearchInputComponent } from './search/search-input/search-input.component';
 import { BrewListComponent } from './search/brew-list/brew-list.component';
 import { BrewContainerComponent } from './search/container/brew-container/brew-container.component';
+import { MapComponentComponent } from './map/map-component/map-component.component';
+
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatPaginatorModule} from "@angular/material/paginator";
-import { MapComponentComponent } from './map/map-component/map-component.component';
+import { PreviewBreweryComponent } from './search/preview-brewery/preview-brewery.component';
 
 const materialModules =[
   MatFormFieldModule,
@@ -30,11 +34,11 @@ const materialModules =[
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     SearchInputComponent,
     BrewContainerComponent,
     BrewListComponent,
     MapComponentComponent,
+    PreviewBreweryComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,12 @@ const materialModules =[
     SharedModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    materialModules
+    materialModules,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

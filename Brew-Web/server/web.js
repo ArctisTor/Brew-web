@@ -5,9 +5,9 @@ const express = require('express'),
   compression = require('compression'),
   bodyParser = require('body-parser'),
   path = require('path'),
-  log = require('./services/log'),
+  log = require('./util/log'),
   http = require('http'),
-  config = require('./config');
+  config = require('./config/config');
 
 module.exports.start = async function() {
   return new Promise(async (resolve, reject) => {

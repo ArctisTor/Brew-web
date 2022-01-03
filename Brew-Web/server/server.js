@@ -1,14 +1,15 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-var config = require('./config'),
-  log = require('./services/log');
+var config = require('./config/config'),
+  log = require('./util/log');
 
-config.get().then(cfg => {
+config.get().then( async (cfg) =>  {
   log.info('Starting Brew Web on port ' + cfg['server'].port);
-  require('./web').start().then(serverStart=> {
+  try {
+    await require('./web').start();
     log.info('Started Brew Web on port ' + cfg['server'].port);
-  }).catch(error=> {
-    console.error(error);
-    log.error(error);
-  });
+  } catch (err) {
+    console.error(err);
+    log.error(err);
+  }
 })

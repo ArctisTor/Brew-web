@@ -1,0 +1,10 @@
+<div class="preview-brewery" *ngIf="previewBrewery">
+  <div class="brewery-title">{{previewBrewery.name}}</div>
+  <div class="brewery-content">Type: {{previewBrewery.brewery_type}}</div>
+  <div class="brewery-content">Street: {{previewBrewery.street}}</div>
+  <div class="brewery-content">State: {{previewBrewery.state}}</div>
+  <div class="brewery-content">Phone: {{previewBrewery.phone}}</div>
+  <div class="brewery-content">
+    URL: <a class="brewery-url"(click)="openNewTab()">{{previewBrewery.website_url}}</a>
+  </div>
+</div>

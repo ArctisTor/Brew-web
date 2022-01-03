@@ -1,0 +1,25 @@
+.preview-brewery{
+  width: auto;
+  border: 1px solid black;
+
+  .brewery-title{
+    font-size: large;
+    padding: 5%;
+    text-align: center;
+  }
+
+  .brewery-content{
+    font-size: medium;
+    padding: 2%;
+    text-align: center;
+
+    .brewery-url {
+      font-size: medium;
+      cursor: pointer;
+      padding: 5%;
+      text-align: center;
+    }
+
+  }
+
+}

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges, Output, EventEmitter} from '@angular/core';
 import {Brewery} from "../../shared/models/Brewery";
 
 @Component({
@@ -12,6 +12,8 @@ import {Brewery} from "../../shared/models/Brewery";
 export class BrewListComponent implements OnInit {
 
   @Input() breweryList!: Brewery[];
+  @Output() selectedBrewery = new EventEmitter<Brewery>();
+
   paginatedBreweryList!: Brewery[];
   totalPages!: number;
   breweryPerPage = 10;
@@ -133,5 +135,9 @@ export class BrewListComponent implements OnInit {
   changePage(selectedPage: any) {
     this.currentPaginationNumber = selectedPage;
     this.paginateBreweryList(this.breweryList);
+  }
+
+  selectBrewery(brewery: Brewery){
+    this.selectedBrewery.emit(brewery);
   }
 }

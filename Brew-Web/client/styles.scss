@@ -4,6 +4,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
+@import '~ngx-toastr/toastr.css';
 
 $primary: rgb(111, 0, 255);
 

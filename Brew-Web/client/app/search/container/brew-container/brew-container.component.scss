@@ -1,0 +1,29 @@
+.search-container{
+
+  display: grid;
+  grid-template-rows: auto;
+  //grid-template-columns: 50% 50%;
+
+  .search-query{
+    //grid-row-start: 1;
+    //grid-row-end: 2;
+  }
+
+  .brewery-results{
+    display: grid;
+    width: 100%;
+    grid-template-columns: fit-content(100%) auto;
+
+    .preview-brewery{
+      width: auto;
+      display: table-cell;
+      //background-color: #0a53be;
+    }
+
+    .brewery-list{
+      display: table-cell;
+    }
+  }
+
+}
+
