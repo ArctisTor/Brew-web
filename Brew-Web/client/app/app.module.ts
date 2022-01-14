@@ -13,7 +13,6 @@ import {SharedModule} from "./shared/shared.module";
 import { SearchInputComponent } from './search/search-input/search-input.component';
 import { BrewListComponent } from './search/brew-list/brew-list.component';
 import { BrewContainerComponent } from './search/container/brew-container/brew-container.component';
-import { MapComponentComponent } from './map/map-component/map-component.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +22,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { PreviewBreweryComponent } from './search/preview-brewery/preview-brewery.component';
+import {EsriMapComponent} from "./map/esri-map/esri-map.component";
+// import { AgmCoreModule } from '@agm/core';
 
 const materialModules =[
   MatFormFieldModule,
@@ -37,8 +38,8 @@ const materialModules =[
     SearchInputComponent,
     BrewContainerComponent,
     BrewListComponent,
-    MapComponentComponent,
     PreviewBreweryComponent,
+    EsriMapComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +48,10 @@ const materialModules =[
     BrowserAnimationsModule,
     HttpClientModule,
     materialModules,
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyCNyNu3eZVRUk7bU27q8vxrS2in-XQ9__E',
+    //   libraries: ['places']
+    // }),
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-top-right',

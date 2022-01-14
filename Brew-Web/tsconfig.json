@@ -23,7 +23,8 @@
       "dom"
     ],
     "types": [
-      "google.maps"
+      "google.maps",
+      "googlemaps"
     ]
   },
   "angularCompilerOptions": {

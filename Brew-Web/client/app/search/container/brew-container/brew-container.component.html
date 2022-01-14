@@ -1,7 +1,8 @@
 <div class="search-container">
   <app-search-input (search)="queryBreweries($event)" [disabled]="isQuery" class="search-query"></app-search-input>
   <div class="brewery-results">
-    <app-preview-brewery class="preview-brewery" [previewBrewery]="selectedBrewery"></app-preview-brewery>
+<!--    <app-preview-brewery class="preview-brewery" [previewBrewery]="selectedBrewery"></app-preview-brewery>-->
+    <app-esri-map class="brew-map"></app-esri-map>
     <app-beer-list [breweryList]="breweryList" (selectedBrewery)="previewBrewery($event)" class="brewery-list"></app-beer-list>
   </div>
 </div>
