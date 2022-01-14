@@ -18,8 +18,6 @@ export class BrewContainerComponent implements OnInit {
   @ViewChild(PreviewBreweryComponent, {static: true}) preview!: PreviewBreweryComponent;
   @ViewChild(EsriMapComponent, { static: true }) map!: EsriMapComponent; // needed to reference the child map component
 
-  // @ts-ignore
-  private geoCoder: google.maps.Geocoder;
 
   constructor(
     private http: HttpService,
@@ -27,8 +25,6 @@ export class BrewContainerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // @ts-ignore
-    this.geoCoder = new google.maps.Geocoder();
   }
 
   queryBreweries(queryString: string) {
@@ -43,21 +39,45 @@ export class BrewContainerComponent implements OnInit {
 
   async previewBrewery(previewBrewery: Brewery): Promise<void> {
     this.selectedBrewery = previewBrewery;
+    let coordinates: any[];
     if (!previewBrewery.longitude || !previewBrewery.latitude) {
-      this.toaster.error("There are no coordinates found for: " + previewBrewery.name);
-      return Promise.reject("There are no coordinates found for: " + previewBrewery.name)
+
+      let request = {
+        SingleLine: previewBrewery.street + ', ' + previewBrewery.city + ', ' + previewBrewery.state + ', ' + previewBrewery.postal_code,
+        outFields: '*',
+        forStorage: 'false',
+        f: 'pjson'
+      };
+
+      this.http.findAddressCandidates(request)
+        .subscribe({
+          next: (response: any)=>{
+            if(response && response.candidates){
+              let location = response.candidates[0].location;
+              coordinates = [location.x, location.y];
+            }
+          },
+          error: err => {
+            this.toaster.error(err);
+            this.toaster.error("There are no coordinates found for: " + previewBrewery.name);
+            return Promise.reject("There are no coordinates found for: " + previewBrewery.name)
+          },
+          complete: () => {
+            try {
+              this.map.panMap(coordinates);
+            } catch (err) {
+              console.log(err);
+            }
+          }
+        })
+    } else {
+      coordinates = [parseFloat(previewBrewery.longitude), parseFloat(previewBrewery.latitude)];
+      try {
+        await this.map.panMap(coordinates);
+      } catch (err) {
+        console.log(err);
+      }
     }
-    try {
-      let coordinates = [parseFloat(previewBrewery.longitude), parseFloat(previewBrewery.latitude)];
-      await this.map.panMap(coordinates);
 
-      this.geoCoder.geocode({'address': previewBrewery.street},  (results: any, status: string) => {
-        if (status == 'OK'){}
-      });
-
-
-    } catch (err) {
-      console.log(err);
-    }
   }
 }

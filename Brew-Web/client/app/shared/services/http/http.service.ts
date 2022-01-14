@@ -9,6 +9,7 @@ export class HttpService {
 
   openBreweryURL = 'https://api.openbrewerydb.org/breweries/';
   brewWebURL = '/brew'
+  findAddress = 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates'
 
   headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -26,6 +27,11 @@ export class HttpService {
   queryBrewery(params: any) {
     return this.http.request('GET', this.brewWebURL+'/brew/query',
       {headers: this.headers, responseType: 'json', params})
+      .pipe(retry(0), catchError(this.handleError));
+  }
+
+  findAddressCandidates(params: any){
+    return this.http.request('Get', this.findAddress, {params})
       .pipe(retry(0), catchError(this.handleError));
   }
 
