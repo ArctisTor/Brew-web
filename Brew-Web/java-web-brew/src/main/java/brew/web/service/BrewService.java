@@ -16,6 +16,7 @@ public class BrewService {
 
   private String breweryURL;
   private RestTemplate restTemplate;
+  private Brewery[] breweries;
   private Gson gson;
 
   public BrewService(@Value("${brewery.path}") String breweryURL, RestTemplate restTemplate, Gson g){
@@ -31,13 +32,20 @@ public class BrewService {
       String url = (breweryURL +"/search?query="+query);
       String responseBody =
         restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class).getBody();
-      Brewery response[] = gson.fromJson(responseBody, Brewery[].class);
+      setBreweries(gson.fromJson(responseBody, Brewery[].class));
       HashMap<String, Brewery[]> breweries = new HashMap<>();
-      breweries.put("breweryList", response);
+      breweries.put("breweryList", getBreweries());
       return breweries;
     } catch (Exception e) {
       return null;
     }
   }
 
+  public Brewery[] getBreweries() {
+    return breweries;
+  }
+
+  public void setBreweries(Brewery[] breweries) {
+    this.breweries = breweries;
+  }
 }
